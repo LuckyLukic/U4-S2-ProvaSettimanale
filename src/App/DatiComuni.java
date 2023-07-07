@@ -1,28 +1,26 @@
 package App;
 
+import java.util.Random;
+
 public class DatiComuni {
 	
-	private int isbn;
+	Random random = new Random();
+	
+	
+	private long randomisbn = 1_000_000_000l + new Random().nextLong(9_000_000_000l);
 	private String titolo;
 	private int annoPublicazione;
 	private int numeroPagine;
 	
-	public DatiComuni (int _isbn, String _titolo, int _annoPublicazione, int _numeroPagine) {
+	public DatiComuni (String _titolo, int _annoPublicazione, int _numeroPagine) {
 		
-		this.setIsbn(_isbn);
-		this.setTitolo(_titolo);
-		this.setAnnoPublicazione(_annoPublicazione);
-		this.setNumeroPagine(_numeroPagine);
+		
+		this.titolo = _titolo;
+		this.annoPublicazione = _annoPublicazione;
+		this.numeroPagine = _numeroPagine;
 		
 	}
 
-	public int getIsbn() {
-		return isbn;
-	}
-
-	public void setIsbn(int isbn) {
-		this.isbn = isbn;
-	}
 
 	public int getAnnoPublicazione() {
 		return annoPublicazione;
@@ -47,5 +45,22 @@ public class DatiComuni {
 	public void setNumeroPagine(int numeroPagine) {
 		this.numeroPagine = numeroPagine;
 	}
+
+	public long getRandomisbn() {
+		return randomisbn;
+	}
+
+	public void setRandomisbn(long randomisbn) {
+		this.randomisbn = randomisbn;
+	}
+
+
+	@Override
+	public String toString() {
+		return "DatiComuni [randomisbn=" + randomisbn + ", titolo=" + titolo + ", annoPublicazione=" + annoPublicazione
+				+ ", numeroPagine=" + numeroPagine + "]";
+	}
+	
+	
 
 }

@@ -4,9 +4,9 @@ public class Rivista extends DatiComuni{
 	
 	private Enum<Periodicita> periodicita;
 	
-	public Rivista (int _isbn, String _titolo, int _annoPublicazione, int _numeroPagine, Enum<Periodicita> _periodicita) {
+	public Rivista ( String _titolo, int _annoPublicazione, int _numeroPagine, Enum<Periodicita> _periodicita) {
 		
-		super(_isbn, _titolo, _annoPublicazione, _numeroPagine);
+		super( _titolo, _annoPublicazione, _numeroPagine);
 		
 		this.periodicita = _periodicita;
 		
@@ -18,6 +18,13 @@ public class Rivista extends DatiComuni{
 
 	public void setPeriodicita(Enum<Periodicita> periodicita) {
 		this.periodicita = periodicita;
+	}
+
+	@Override
+	public String toString() {
+		return "Rivista [periodicita=" + periodicita + ", toString()=" + super.toString() + "]";
 	} 
+	
+	
 
 }

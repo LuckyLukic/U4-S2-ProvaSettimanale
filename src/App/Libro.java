@@ -1,13 +1,13 @@
 package App;
 
-public class Libro extends DatiComuni{
+public class Libro extends DatiComuni {
 	
 	private String autore;
 	private String genere;
 	
-	public Libro (int _isbn, String _titolo, int _annoPublicazione, int _numeroPagine, String _autore, String _genere) {
+	public Libro ( String _titolo, int _annoPublicazione, int _numeroPagine, String _autore, String _genere) {
 		
-		super (_isbn, _titolo,  _annoPublicazione, _numeroPagine);
+		super ( _titolo,  _annoPublicazione, _numeroPagine);
 		
 		this.autore =_autore;
 		this.genere =_genere;
@@ -29,6 +29,15 @@ public class Libro extends DatiComuni{
 	public void setGenere(String genere) {
 		this.genere = genere;
 	}
-	
 
+	@Override
+	public String toString() {
+		return "Libro [autore=" + autore + ", genere=" + genere + ", toString()=" + super.toString() + "]";
+	}
+
+
+
+	
+	
+   
 }
