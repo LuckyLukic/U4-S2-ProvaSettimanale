@@ -1,9 +1,13 @@
 package App;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
+
+import org.apache.commons.io.FileUtils;
 
 
 
@@ -30,55 +34,102 @@ public class App {
 		
 		System.out.println(myArchive.toString());
 		
+		save(myArchive);
+		
+		System.out.println("************************");
 		
 		reserchByIsdn( myArchive);
 		
+		System.out.println("************************");
+		
 		reserchByYear (myArchive, 2023);
+		
+		System.out.println("************************");
 		
 		reserchByAuthor(myArchive, "Autore1");
 		
+		System.out.println("************************");
+		
 		removeElement(myArchive);
 		
+		System.out.println("************************");
 		
+		System.out.println(myArchive.toString());
+		
+		System.out.println("************************");
+		
+		save(myArchive);
+		
+	
 
 	}
+	
+	//METODO REMOVE
 	
     public static void removeElement (List<DatiComuni> myArchive) {
     	
     	Scanner scanner = new Scanner(System.in);
 		System.out.println("Inserisci un ISBN");
-		 int myIsbn = Integer.parseInt(scanner.nextLine());
+		long myIsbn = Long.parseLong(scanner.nextLine());
 		
-		  myArchive.removeIf(element -> element.getRandomisbn() == myIsbn);
-		  System.out.println("Rimosso " + myArchive);
-		  
-	}
+		try {
+			
+		myArchive.removeIf(element -> element.getRandomisbn() == myIsbn);
+		
+		throw new NumberFormatException("formato errato");
+	
+		}
+		
+		catch (NumberFormatException e) {
+			
+			System.out.println("formato errato");
+			e.printStackTrace();
+			
+			}
+		}
+    
+    //METODO RESEARCH ISBN
 	
 	public static void reserchByIsdn(List<DatiComuni> myArchive) {
 		
 		Scanner scanner = new Scanner(System.in);
-		System.out.println("Inserisci un ISBN");
+		System.out.println("Inserisci un ISBN");	
+		long myIsbn = Long.parseLong(scanner.nextLine());
 		
-		int myIsbn = Integer.parseInt(scanner.nextLine());
-		
-	   Optional<DatiComuni> research = myArchive.stream().filter(element -> element.getRandomisbn() == myIsbn).findFirst();
+		try{
+			
+	    Optional<DatiComuni> research = myArchive.stream().filter(element -> element.getRandomisbn() == myIsbn).findFirst();
 	   
-	   if (!research.isEmpty()) {
+	    if (!research.isEmpty()) {
+	    	
 		System.out.println(research.toString());
-	   } else { 
+	    } else { 
 	    System.out.println("non ci sono elementi con questo ISBN");
 	}
 	}
+		catch (NumberFormatException e) {
+			
+			System.out.println("formato errato");
+			e.printStackTrace();
+			
+			}
+		}
+	
+	//METODO RESEARCH YEAR
 	
 	   public static void reserchByYear(List<DatiComuni> myArchive, int year) {
 		   List<DatiComuni> research = myArchive.stream().filter(element -> element.getAnnoPublicazione() == year).toList();
 		   
 		   if (!research.isEmpty()) {
+			   
 				System.out.println(research.toString());
 			   } else { 
 			    System.out.println("non ci sono elementi stampati in quest'anno");
-	   }
+			    
+	           }
 	}
+	   
+	//METODO RESEARCH AUTHOR   
 	   
 	   public static void reserchByAuthor(List<DatiComuni> myArchive, String author) {
 		   List<DatiComuni> research = myArchive.stream().filter(element -> element instanceof Libro && ((Libro) element)
@@ -86,12 +137,48 @@ public class App {
 				   .toList();
 		   
 		   if (!research.isEmpty()) {
+			   
 				System.out.println(research.toString());
 			   } else { 
 			    System.out.println("non ci sono elementi di questo autore");
-	   }
+			    
+	           }
 	}   
+	   
+	
+	//METODI PER SCRITTURA E LETTURA FILE
+	   
+	   private static File myFile = new File("libreria.txt");
+	   
+	   public static void save(List<DatiComuni> lista) {
+		   
+	        try {
+	        	
+	            List<String> lines = new ArrayList<>();
+	            for (DatiComuni elemento : lista) {
+	                lines.add(elemento.toString());
+	            }
+	            
+	            FileUtils.writeLines(myFile, "UTF-8", lines, false);
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	        }
+	    }
+
+	    public static String read() throws IOException {
+	        if (myFile.exists()) {
+	            String contenuto = FileUtils.readFileToString(myFile, "UTF-8");
+	            System.out.println(contenuto);
+	            return contenuto;
+	        } else {
+	            System.out.println("File non trovato");
+	            return "";
+	        }
+	    }
+	
+	   
 }
+
 	
 
 
