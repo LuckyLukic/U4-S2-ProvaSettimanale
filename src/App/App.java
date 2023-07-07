@@ -59,10 +59,10 @@ public class App {
 		System.out.println("************************");
 		
 		save(myArchive);
-		
 	
-
 	}
+	
+	
 	
 	//METODO REMOVE
 	
@@ -105,8 +105,8 @@ public class App {
 		System.out.println(research.toString());
 	    } else { 
 	    System.out.println("non ci sono elementi con questo ISBN");
-	}
-	}
+	    }
+		}
 		catch (NumberFormatException e) {
 			
 			System.out.println("formato errato");
@@ -122,12 +122,12 @@ public class App {
 		   
 		   if (!research.isEmpty()) {
 			   
-				System.out.println(research.toString());
-			   } else { 
-			    System.out.println("non ci sono elementi stampati in quest'anno");
+		   System.out.println(research.toString());
+		   } else { 
+			 System.out.println("non ci sono elementi stampati in quest'anno");
 			    
-	           }
-	}
+	         }
+	   }
 	   
 	//METODO RESEARCH AUTHOR   
 	   
@@ -143,7 +143,7 @@ public class App {
 			    System.out.println("non ci sono elementi di questo autore");
 			    
 	           }
-	}   
+	   }   
 	   
 	
 	//METODI PER SCRITTURA E LETTURA FILE
@@ -160,6 +160,7 @@ public class App {
 	            }
 	            
 	            FileUtils.writeLines(myFile, "UTF-8", lines, false);
+	            
 	        } catch (IOException e) {
 	            e.printStackTrace();
 	        }
