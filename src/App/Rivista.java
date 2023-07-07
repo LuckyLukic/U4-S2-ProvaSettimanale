@@ -22,7 +22,7 @@ public class Rivista extends DatiComuni{
 
 	@Override
 	public String toString() {
-		return "Rivista [periodicita=" + periodicita + ", toString()=" + super.toString() + "]";
+		return "Rivista [periodicita=" + periodicita + ", " + super.toString() + "]";
 	} 
 	
 	

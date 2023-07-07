@@ -32,7 +32,7 @@ public class Libro extends DatiComuni {
 
 	@Override
 	public String toString() {
-		return "Libro [autore=" + autore + ", genere=" + genere + ", toString()=" + super.toString() + "]";
+		return "Libro [autore=" + autore + ", genere=" + genere + ", " + super.toString() + "]";
 	}
 
 

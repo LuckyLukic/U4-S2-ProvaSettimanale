@@ -2,12 +2,16 @@ package App;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Optional;
+import java.util.Scanner;
+
 
 
 public class App {
 	
 	public static void main(String[] args) {
+		
+
 		
 		
 		List <DatiComuni> myArchive = new ArrayList<>();
@@ -24,27 +28,40 @@ public class App {
 		myArchive.add (new Rivista ( "Titolo10", 2023, 31, Periodicita.MENSILE));
 		
 		
-		System.out.print(myArchive.toString());
+		System.out.println(myArchive.toString());
 		
 		
-		reserchByIsdn( myArchive, 1350810059);
+		reserchByIsdn( myArchive);
 		
 		reserchByYear (myArchive, 2023);
 		
+		reserchByAuthor(myArchive, "Autore1");
 		
+		removeElement(myArchive);
 		
 		
 
 	}
 	
- static void removeElement (List<DatiComuni> myArchive, long isbn) {
-		  myArchive.removeIf(element -> element.getRandomisbn() == isbn);
-		  System.out.println(myArchive);
-		 
+    public static void removeElement (List<DatiComuni> myArchive) {
+    	
+    	Scanner scanner = new Scanner(System.in);
+		System.out.println("Inserisci un ISBN");
+		 int myIsbn = Integer.parseInt(scanner.nextLine());
+		
+		  myArchive.removeIf(element -> element.getRandomisbn() == myIsbn);
+		  System.out.println("Rimosso " + myArchive);
+		  
 	}
 	
-	public static void reserchByIsdn(List<DatiComuni> myArchive, long isbn) {
-	   List<DatiComuni> research = myArchive.stream().filter(element -> element.getRandomisbn() == isbn).toList();
+	public static void reserchByIsdn(List<DatiComuni> myArchive) {
+		
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("Inserisci un ISBN");
+		
+		int myIsbn = Integer.parseInt(scanner.nextLine());
+		
+	   Optional<DatiComuni> research = myArchive.stream().filter(element -> element.getRandomisbn() == myIsbn).findFirst();
 	   
 	   if (!research.isEmpty()) {
 		System.out.println(research.toString());

@@ -57,8 +57,8 @@ public class DatiComuni {
 
 	@Override
 	public String toString() {
-		return "DatiComuni [randomisbn=" + randomisbn + ", titolo=" + titolo + ", annoPublicazione=" + annoPublicazione
-				+ ", numeroPagine=" + numeroPagine + "]";
+		return "randomisbn=" + randomisbn + ", titolo=" + titolo + ", annoPublicazione=" + annoPublicazione
+				+ ", numeroPagine=" + numeroPagine + "";
 	}
 	
 	
